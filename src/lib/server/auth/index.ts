@@ -17,7 +17,6 @@ export const lucia = new Lucia(adapter, {
 		}
 	},
 	getSessionAttributes(attributes) {
-		console.log(attributes);
 		return {};
 	},
 	getUserAttributes: (attributes) => {
