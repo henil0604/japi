@@ -1,5 +1,6 @@
 import { initTRPC, type inferAsyncReturnType } from '@trpc/server';
 import type { RequestEvent } from '@sveltejs/kit';
+import { db } from '$lib/server/db';
 
 export type Context = inferAsyncReturnType<typeof createContext>;
 
@@ -8,6 +9,7 @@ export type Context = inferAsyncReturnType<typeof createContext>;
 */
 export async function createContext(event: RequestEvent) {
 	return {
+		db,
 		event
 	};
 }
