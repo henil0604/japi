@@ -6,6 +6,8 @@
 		"db",
 		"env",
 		"trpc",
-		"vscode"
+		"vscode",
+		"hooks",
+		"vscode:ext",
 	]
 }
