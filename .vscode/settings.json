@@ -1,3 +1,8 @@
 {
-	"cSpell.words": ["trpc"]
+	"cSpell.words": [
+		"trpc"
+	],
+	"conventionalCommits.scopes": [
+		"db"
+	]
 }
