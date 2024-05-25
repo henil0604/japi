@@ -9,6 +9,7 @@
 		"vscode",
 		"hooks",
 		"vscode:ext",
-		"auth"
+		"auth",
+		"api"
 	]
 }
