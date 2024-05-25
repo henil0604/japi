@@ -3,6 +3,7 @@
 		"trpc"
 	],
 	"conventionalCommits.scopes": [
-		"db"
+		"db",
+		"env"
 	]
 }
