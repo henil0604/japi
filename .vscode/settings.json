@@ -4,6 +4,8 @@
 	],
 	"conventionalCommits.scopes": [
 		"db",
-		"env"
+		"env",
+		"trpc",
+		"vscode"
 	]
 }
