@@ -1,7 +1,7 @@
 import { NODE_ENV } from '$env/static/private';
 import type { Cookies } from '@sveltejs/kit';
-import * as githubService from './github';
-import * as googleService from './google';
+import { githubAuthService } from './github';
+import { googleAuthService } from './google';
 import { Cookie, generateIdFromEntropySize, type RegisteredDatabaseSessionAttributes } from 'lucia';
 import { AUTH_USER_ID_ENTROPY_SIZE } from '$lib/const/auth';
 import { lucia } from '$lib/server/auth';
@@ -82,6 +82,6 @@ export const authService = {
 	createSessionCookie,
 	setSessionCookie,
 	createAndSetSessionCookie,
-	github: githubService,
-	google: googleService
+	google: googleAuthService,
+	github: githubAuthService
 };
