@@ -1,25 +1,20 @@
-import { generateState } from 'arctic';
 import type { RequestHandler } from './$types';
-import { github } from '$lib/server/auth';
 import { GITHUB_OAUTH_STATE_COOKIE_NAME } from '$lib/const/auth';
-import { NODE_ENV } from '$env/static/private';
 import { redirect } from '@sveltejs/kit';
+import { authService } from '$lib/server/services/auth';
 
 export const GET: RequestHandler = async (event) => {
-	const { cookies } = event;
+	const { cookies, setHeaders } = event;
 
-	const state = generateState();
-	const url = await github.createAuthorizationURL(state, {
-		scopes: ['user:email']
+	// TODO: invalidate current session if it exists
+
+	const { state, url } = await authService.github.initializeAuthenticationProcess();
+
+	cookies.set(GITHUB_OAUTH_STATE_COOKIE_NAME, state, authService.generateCookieSetOptions());
+
+	// disable cache
+	setHeaders({
+		'Cache-Control': 'no-cache'
 	});
-
-	cookies.set(GITHUB_OAUTH_STATE_COOKIE_NAME, state, {
-		httpOnly: true,
-		secure: NODE_ENV === 'production',
-		path: '/',
-		maxAge: 60 * 10, // 10 minutes
-		sameSite: 'lax'
-	});
-
 	throw redirect(301, url.href);
 };

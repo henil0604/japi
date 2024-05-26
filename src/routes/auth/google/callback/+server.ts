@@ -1,10 +1,10 @@
-import { OAuth2RequestError } from 'arctic';
-import type { RequestHandler } from './$types';
-import { github } from '$lib/server/auth';
-import { GITHUB_PROVIDER_ID } from '$lib/const/auth';
+import { google } from '$lib/server/auth';
 import { error, isRedirect, redirect } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
+import { GOOGLE_PROVIDER_ID } from '$lib/const/auth';
 import { authService } from '$lib/server/services/auth';
 import { dbService } from '$lib/server/services/db';
+import { OAuth2RequestError } from 'arctic';
 import { db } from '$lib/server/db';
 
 export const GET: RequestHandler = async (event) => {
@@ -14,42 +14,33 @@ export const GET: RequestHandler = async (event) => {
 	setHeaders({ 'Cache-Control': 'no-cache' });
 
 	// Validate callback
-	const { code, valid: isRequestValid } = authService.github.validateCallbackCookies(
+	const { valid, code, codeVerifier } = authService.google.validateCallbackCookies(
 		cookies,
 		url,
 		true
 	);
-	if (!isRequestValid) return error(400, 'Invalid state or code');
+	if (!valid) return error(400, 'Invalid state or code');
 
 	try {
 		// Exchange code for tokens and fetch user info
-		const tokens = await github.validateAuthorizationCode(code);
+		const tokens = await google.validateAuthorizationCode(code, codeVerifier);
+		const googleUser = await authService.google.fetchGoogleUserFromAPI(tokens.accessToken);
 
-		// fetch user from github
-		const githubUser = await authService.github.fetchGithubUserFromAPI(tokens.accessToken);
-
-		// Fetch user's primary email
-		const userPrimaryEmail = await authService.github.fetchUserPrimaryEmailFromAPI(
-			tokens.accessToken
-		);
-		if (!userPrimaryEmail) return error(400, 'Primary/Verified email not found');
-
-		// Check for existing account
-		const existingUser = await dbService.user.getUserByEmail(userPrimaryEmail);
+		// Check for existing user and account
+		const existingUser = await dbService.user.getUserByEmail(googleUser.email);
 		let existingAccount = await dbService.user.getUserAccount(
-			GITHUB_PROVIDER_ID,
-			githubUser.id.toString()
+			GOOGLE_PROVIDER_ID,
+			googleUser.sub
 		);
 
-		// if user exist
+		// Handle existing user and account
 		if (existingUser) {
 			// if account does not exist
 			if (!existingAccount) {
-				// create account
 				existingAccount = await db.account.create({
 					data: {
-						providerId: GITHUB_PROVIDER_ID,
-						providerUserId: githubUser.id.toString(),
+						providerId: GOOGLE_PROVIDER_ID,
+						providerUserId: googleUser.sub,
 						user: { connect: { id: existingUser.id } }
 					}
 				});
@@ -60,21 +51,24 @@ export const GET: RequestHandler = async (event) => {
 				existingAccount.providerId,
 				cookies
 			);
+
 			return redirect(302, '/');
 		}
 
-		// Generate user ID and create user with account
+		// generate user id
 		const userId = authService.generateUserId();
+
+		// create
 		const { account } = await dbService.user.createAccountAndEnsureUser({
+			account: {
+				providerId: GOOGLE_PROVIDER_ID,
+				providerUserId: googleUser.sub
+			},
 			user: {
 				id: userId,
-				email: userPrimaryEmail,
-				name: githubUser.name,
-				avatar: githubUser.avatar_url ?? null
-			},
-			account: {
-				providerId: GITHUB_PROVIDER_ID,
-				providerUserId: githubUser.id.toString()
+				email: googleUser.email,
+				name: googleUser.name,
+				avatar: googleUser.picture
 			}
 		});
 
