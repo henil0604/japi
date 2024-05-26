@@ -13,7 +13,7 @@ interface CookieSetOptions {
 	maxAge: number;
 	sameSite: 'lax';
 }
-function generateCookieSetOptions(path = '/'): CookieSetOptions {
+export function generateCookieSetOptions(path = '/'): CookieSetOptions {
 	return {
 		httpOnly: true,
 		path: path,
@@ -23,17 +23,17 @@ function generateCookieSetOptions(path = '/'): CookieSetOptions {
 	};
 }
 
-function deleteCookie(cookies: Cookies, name: string) {
+export function deleteCookie(cookies: Cookies, name: string) {
 	return cookies.delete(name, {
 		path: '/'
 	});
 }
 
-function generateUserId(size: number = AUTH_USER_ID_ENTROPY_SIZE) {
+export function generateUserId(size: number = AUTH_USER_ID_ENTROPY_SIZE) {
 	return generateIdFromEntropySize(size);
 }
 
-async function createSessionCookie(
+export async function createSessionCookie(
 	userId: string,
 	attributes: RegisteredDatabaseSessionAttributes
 ) {
@@ -48,7 +48,7 @@ async function createSessionCookie(
 	};
 }
 
-function setSessionCookie(
+export function setSessionCookie(
 	cookies: Cookies,
 	cookie: Cookie,
 	attributes?: Partial<CookieSetOptions>
@@ -61,7 +61,11 @@ function setSessionCookie(
 	});
 }
 
-async function createAndSetSessionCookie(userId: string, providerId: string, cookies: Cookies) {
+export async function createAndSetSessionCookie(
+	userId: string,
+	providerId: string,
+	cookies: Cookies
+) {
 	const { cookie: sessionCookie } = await authService.createSessionCookie(userId, {
 		providerId: providerId
 	});
