@@ -80,7 +80,6 @@ export async function fetchUserPrimaryEmailFromAPI(accessToken: string) {
 	// convert to json
 	const emails: GithubEmail[] = await githubUserEmailsResponse.json();
 
-	console.log('emails?', emails);
 	// find the email that is either ( verified & primary ) or ( verified )
 	const primaryEmail = emails.find((email) => email.primary && email.verified)?.email ?? null;
 

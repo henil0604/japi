@@ -30,11 +30,6 @@ export function validateCallbackCookies(cookies: Cookies, url: URL, deleteCookie
 	const state = url.searchParams.get('state');
 	const code = url.searchParams.get('code');
 
-	console.log('storedState?', storedState);
-	console.log('codeVerifier?', codeVerifier);
-	console.log('state?', state);
-	console.log('code?', code);
-
 	// verify state
 	if (!state || !storedState || !code || storedState !== state || !codeVerifier) {
 		return {
