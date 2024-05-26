@@ -70,3 +70,9 @@ export async function fetchGoogleUserFromAPI(accessToken: string) {
 
 	return googleUser;
 }
+
+export const googleAuthService = {
+	initializeAuthenticationProcess,
+	validateCallbackCookies,
+	fetchGoogleUserFromAPI
+};

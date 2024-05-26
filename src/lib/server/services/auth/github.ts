@@ -85,3 +85,10 @@ export async function fetchUserPrimaryEmailFromAPI(accessToken: string) {
 
 	return primaryEmail;
 }
+
+export const githubAuthService = {
+	initializeAuthenticationProcess,
+	validateCallbackCookies,
+	fetchGithubUserFromAPI,
+	fetchUserPrimaryEmailFromAPI
+};
