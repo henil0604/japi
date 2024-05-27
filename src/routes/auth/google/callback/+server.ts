@@ -10,6 +10,9 @@ import { db } from '$lib/server/db';
 export const GET: RequestHandler = async (event) => {
 	const { cookies, url, setHeaders } = event;
 
+	// fetch and delete redirect path
+	const redirectToPathname = authService.getRedirectPathnameFromCookie(cookies);
+
 	// Disable cache
 	setHeaders({ 'Cache-Control': 'no-cache' });
 
@@ -20,8 +23,6 @@ export const GET: RequestHandler = async (event) => {
 		true
 	);
 	if (!valid) return error(400, 'Invalid state or code');
-
-	const redirectToURL = cookies.get(NEXT_REDIRECT_SEARCH_PARAMETER_NAME) ?? '/';
 
 	try {
 		// Exchange code for tokens and fetch user info
@@ -54,7 +55,7 @@ export const GET: RequestHandler = async (event) => {
 				cookies
 			);
 
-			return redirect(302, redirectToURL);
+			return redirect(302, redirectToPathname);
 		}
 
 		// generate user id
@@ -76,7 +77,7 @@ export const GET: RequestHandler = async (event) => {
 
 		await authService.createAndSetSessionCookie(userId, account.providerId, cookies);
 
-		return redirect(302, redirectToURL);
+		return redirect(302, redirectToPathname);
 	} catch (e) {
 		// Handle errors
 		if (isRedirect(e)) throw e;

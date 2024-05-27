@@ -1,15 +1,17 @@
 import { OAuth2RequestError } from 'arctic';
 import type { RequestHandler } from './$types';
 import { github } from '$lib/server/auth';
-import { GITHUB_PROVIDER_ID, NEXT_REDIRECT_SEARCH_PARAMETER_NAME } from '$lib/const/auth';
+import { GITHUB_PROVIDER_ID } from '$lib/const/auth';
 import { error, isRedirect, redirect } from '@sveltejs/kit';
 import { authService } from '$lib/server/services/auth';
 import { dbService } from '$lib/server/services/db';
 import { db } from '$lib/server/db';
-import { ROUTES } from '$lib/const/routes';
 
 export const GET: RequestHandler = async (event) => {
 	const { cookies, url, setHeaders } = event;
+
+	// fetch and delete redirect path
+	const redirectToPathname = authService.getRedirectPathnameFromCookie(cookies);
 
 	// Disable cache
 	setHeaders({ 'Cache-Control': 'no-cache' });
@@ -21,8 +23,6 @@ export const GET: RequestHandler = async (event) => {
 		true
 	);
 	if (!isRequestValid) return error(400, 'Invalid state or code');
-
-	const redirectToURL = cookies.get(NEXT_REDIRECT_SEARCH_PARAMETER_NAME) ?? '/';
 
 	try {
 		// Exchange code for tokens and fetch user info
@@ -63,7 +63,7 @@ export const GET: RequestHandler = async (event) => {
 				existingAccount.providerId,
 				cookies
 			);
-			return redirect(302, redirectToURL);
+			return redirect(302, redirectToPathname);
 		}
 
 		// Generate user ID and create user with account
@@ -83,7 +83,7 @@ export const GET: RequestHandler = async (event) => {
 
 		await authService.createAndSetSessionCookie(userId, account.providerId, cookies);
 
-		return redirect(302, redirectToURL);
+		return redirect(302, redirectToPathname);
 	} catch (e) {
 		// Handle errors
 		if (isRedirect(e)) throw e;
