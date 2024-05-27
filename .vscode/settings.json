@@ -1,7 +1,5 @@
 {
-	"cSpell.words": [
-		"trpc"
-	],
+	"cSpell.words": ["trpc"],
 	"conventionalCommits.scopes": [
 		"db",
 		"env",
@@ -10,6 +8,7 @@
 		"hooks",
 		"vscode:ext",
 		"auth",
-		"api"
+		"api",
+		"const"
 	]
 }
