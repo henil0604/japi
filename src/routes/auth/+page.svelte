@@ -1,9 +1,20 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
+	import { ICONS } from '$lib/const/ui';
 	import { useAuth } from '$lib/use/auth';
+	import Icon from '@iconify/svelte';
 </script>
 
-<button onclick={() => useAuth.signIn('google')}>Continue with Google</button>
-<button onclick={() => useAuth.signIn('github')}>Continue with Github</button>
+<div class="wrapper">
+	<Button class="gap-2" size="lg" on:click={() => useAuth.signIn('github')}>
+		<Icon font-size={23} icon={ICONS.BRAND.GITHUB} />
+		Continue with Github</Button
+	>
+	<Button class="gap-2" size="lg" on:click={() => useAuth.signIn('google')}>
+		<Icon font-size={23} icon={ICONS.BRAND.GOOGLE} />
+		Continue with Google</Button
+	>
+</div>
 
 <style>
 	:global {
@@ -14,22 +25,20 @@
 
 		body {
 			display: flex;
-			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			gap: 10px;
-
-			button {
-				border: 1px solid #999;
-				padding: 10px 15px;
-				border-radius: 5px;
-				transition: 0.3s all;
-
-				&:hover {
-					background-color: #000;
-					color: #fff;
-				}
-			}
 		}
+	}
+
+	.wrapper {
+		@apply border;
+		display: flex;
+		flex-direction: column;
+
+		background-color: theme('backgroundColor.accent.DEFAULT');
+
+		gap: theme('gap.5');
+		padding: theme('padding.5');
+		border-radius: theme('borderRadius.DEFAULT');
 	}
 </style>
