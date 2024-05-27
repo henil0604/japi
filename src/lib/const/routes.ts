@@ -12,7 +12,8 @@ const RAW_ROUTES = {
 	AUTH_GITHUB: '/auth/github',
 	AUTH_GITHUB_CALLBACK: '/auth/github/callback',
 	AUTH_GOOGLE: '/auth/google',
-	AUTH_GOOGLE_CALLBACK: '/auth/google/callback'
+	AUTH_GOOGLE_CALLBACK: '/auth/google/callback',
+	AUTH_LOGOUT: '/auth/logout'
 } as const;
 
 type RouteValue = {
