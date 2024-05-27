@@ -82,6 +82,16 @@ export function isProtectedRoute(pathname: string, routes = PROTECTED_ROUTES) {
 	});
 }
 
+export async function logoutSession(sessionId: string) {
+	await lucia.invalidateSession(sessionId);
+
+	const blankSession = lucia.createBlankSessionCookie();
+
+	return {
+		cookie: blankSession
+	};
+}
+
 export const authService = {
 	generateCookieSetOptions,
 	deleteCookie,
@@ -90,6 +100,7 @@ export const authService = {
 	setSessionCookie,
 	createAndSetSessionCookie,
 	isProtectedRoute,
+	logoutSession,
 	google: googleAuthService,
 	github: githubAuthService
 };
