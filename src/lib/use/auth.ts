@@ -4,8 +4,8 @@ import { ROUTES } from '$lib/const/routes';
 import type { AuthProvider } from '$lib/types/auth';
 
 interface AuthorizationURLOptions {
-		redirectTo?: string;
-	}
+	redirectTo?: string;
+}
 export function getAuthorizationURL(provider: AuthProvider, options?: AuthorizationURLOptions) {
 	const url = AUTH_PROVIDER_ROUTES[provider];
 
@@ -23,14 +23,13 @@ export function signIn(...args: Parameters<typeof getAuthorizationURL>) {
 }
 
 export function signOut(redirectTo?: string) {
-	if (!browser) return;
-
 	const url = ROUTES.AUTH_LOGOUT.url;
+
 	if (redirectTo) {
-		url.searchParams.set('redirectTo', redirectTo);
+		url.searchParams.set(NEXT_REDIRECT_SEARCH_PARAMETER_NAME, redirectTo);
 	}
 
-	location.href = url.href;
+	goto(url);
 }
 
 export const useAuth = {
