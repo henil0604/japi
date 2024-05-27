@@ -7,12 +7,11 @@ import {
 	GITHUB_AUTH_CLIENT_ID,
 	GITHUB_AUTH_SECRET,
 	GOOGLE_AUTH_CLIENT_ID,
-	GOOGLE_AUTH_CLIENT_SECRET,
-	ORIGIN
+	GOOGLE_AUTH_CLIENT_SECRET
 } from '$env/static/private';
-import { AUTH_API_BASE_URL } from '$lib/const/auth';
+import { ROUTES } from '$lib/const/routes';
 
-const GOOGLE_AUTH_REDIRECT_URI = `${ORIGIN}${AUTH_API_BASE_URL}/google/callback`;
+const GOOGLE_AUTH_REDIRECT_URI = `${ROUTES.AUTH_GOOGLE_CALLBACK.url.href}`;
 
 const adapter = new PrismaAdapter(db.session, db.user);
 

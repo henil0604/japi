@@ -1,7 +1,7 @@
 import { google } from '$lib/server/auth';
 import { error, isRedirect, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { GOOGLE_PROVIDER_ID } from '$lib/const/auth';
+import { GOOGLE_PROVIDER_ID, NEXT_REDIRECT_SEARCH_PARAMETER_NAME } from '$lib/const/auth';
 import { authService } from '$lib/server/services/auth';
 import { dbService } from '$lib/server/services/db';
 import { OAuth2RequestError } from 'arctic';
@@ -20,6 +20,8 @@ export const GET: RequestHandler = async (event) => {
 		true
 	);
 	if (!valid) return error(400, 'Invalid state or code');
+
+	const redirectToURL = cookies.get(NEXT_REDIRECT_SEARCH_PARAMETER_NAME) ?? '/';
 
 	try {
 		// Exchange code for tokens and fetch user info
@@ -52,7 +54,7 @@ export const GET: RequestHandler = async (event) => {
 				cookies
 			);
 
-			return redirect(302, '/');
+			return redirect(302, redirectToURL);
 		}
 
 		// generate user id
@@ -74,7 +76,7 @@ export const GET: RequestHandler = async (event) => {
 
 		await authService.createAndSetSessionCookie(userId, account.providerId, cookies);
 
-		return redirect(302, '/');
+		return redirect(302, redirectToURL);
 	} catch (e) {
 		// Handle errors
 		if (isRedirect(e)) throw e;
