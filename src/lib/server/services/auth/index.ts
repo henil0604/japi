@@ -3,8 +3,9 @@ import type { Cookies } from '@sveltejs/kit';
 import { githubAuthService } from './github';
 import { googleAuthService } from './google';
 import { Cookie, generateIdFromEntropySize, type RegisteredDatabaseSessionAttributes } from 'lucia';
-import { AUTH_USER_ID_ENTROPY_SIZE } from '$lib/const/auth';
+import { AUTH_USER_ID_ENTROPY_SIZE, PROTECTED_ROUTES } from '$lib/const/auth';
 import { lucia } from '$lib/server/auth';
+import outmatch from 'outmatch';
 
 interface CookieSetOptions {
 	path: string;
@@ -75,6 +76,12 @@ export async function createAndSetSessionCookie(
 	};
 }
 
+export function isProtectedRoute(pathname: string, routes = PROTECTED_ROUTES) {
+	return routes.some((path) => {
+		return outmatch(path)(pathname);
+	});
+}
+
 export const authService = {
 	generateCookieSetOptions,
 	deleteCookie,
@@ -82,6 +89,7 @@ export const authService = {
 	createSessionCookie,
 	setSessionCookie,
 	createAndSetSessionCookie,
+	isProtectedRoute,
 	google: googleAuthService,
 	github: githubAuthService
 };
