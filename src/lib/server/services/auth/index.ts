@@ -3,7 +3,11 @@ import type { Cookies } from '@sveltejs/kit';
 import { githubAuthService } from './github';
 import { googleAuthService } from './google';
 import { Cookie, generateIdFromEntropySize, type RegisteredDatabaseSessionAttributes } from 'lucia';
-import { AUTH_USER_ID_ENTROPY_SIZE, PROTECTED_ROUTES } from '$lib/const/auth';
+import {
+	AUTH_USER_ID_ENTROPY_SIZE,
+	NEXT_REDIRECT_SEARCH_PARAMETER_NAME,
+	PROTECTED_ROUTES
+} from '$lib/const/auth';
 import { lucia } from '$lib/server/auth';
 import outmatch from 'outmatch';
 
@@ -92,6 +96,14 @@ export async function logoutSession(sessionId: string) {
 	};
 }
 
+export function getRedirectPathnameFromCookie(cookies: Cookies, deleteAfter = true) {
+	const redirectToPathname = cookies.get(NEXT_REDIRECT_SEARCH_PARAMETER_NAME) ?? '/';
+	if (deleteAfter) {
+		authService.deleteCookie(cookies, NEXT_REDIRECT_SEARCH_PARAMETER_NAME);
+	}
+	return redirectToPathname;
+}
+
 export const authService = {
 	generateCookieSetOptions,
 	deleteCookie,
@@ -101,6 +113,7 @@ export const authService = {
 	createAndSetSessionCookie,
 	isProtectedRoute,
 	logoutSession,
+	getRedirectPathnameFromCookie,
 	google: googleAuthService,
 	github: githubAuthService
 };
