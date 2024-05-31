@@ -1,0 +1,22 @@
+@import './theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	html,
+	body {
+		height: 100%;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		display: flex;
+		flex-grow: 1;
+	}
+}

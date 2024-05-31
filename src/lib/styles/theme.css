@@ -1,0 +1,65 @@
+@layer base {
+	:root {
+		--clr-background: 0 0% 100%;
+		--clr-foreground: 240 10% 3.9%;
+
+		--clr-muted: 240 4.8% 95.9%;
+		--clr-muted-foreground: 240 3.8% 46.1%;
+
+		--clr-popover: 0 0% 100%;
+		--clr-popover-foreground: 240 10% 3.9%;
+
+		--clr-card: 0 0% 100%;
+		--clr-card-foreground: 240 10% 3.9%;
+
+		--clr-border: 240 5.9% 90%;
+		--clr-input: 240 5.9% 90%;
+
+		--clr-primary: 240 5.9% 10%;
+		--clr-primary-foreground: 0 0% 98%;
+
+		--clr-secondary: 240 4.8% 95.9%;
+		--clr-secondary-foreground: 240 5.9% 10%;
+
+		--clr-accent: 240 4.8% 95.9%;
+		--clr-accent-foreground: 240 5.9% 10%;
+
+		--clr-destructive: 0 72.2% 50.6%;
+		--clr-destructive-foreground: 0 0% 98%;
+
+		--clr-ring: 240 10% 3.9%;
+
+		--br-radius: 0.5rem;
+	}
+
+	.dark {
+		--clr-background: 240 10% 3.9%;
+		--clr-foreground: 0 0% 98%;
+
+		--clr-muted: 240 3.7% 15.9%;
+		--clr-muted-foreground: 240 5% 64.9%;
+
+		--clr-popover: 240 10% 3.9%;
+		--clr-popover-foreground: 0 0% 98%;
+
+		--clr-card: 240 10% 3.9%;
+		--clr-card-foreground: 0 0% 98%;
+
+		--clr-border: 240 3.7% 15.9%;
+		--clr-input: 240 3.7% 15.9%;
+
+		--clr-primary: 0 0% 98%;
+		--clr-primary-foreground: 240 5.9% 10%;
+
+		--clr-secondary: 240 3.7% 15.9%;
+		--clr-secondary-foreground: 0 0% 98%;
+
+		--clr-accent: 240 3.7% 15.9%;
+		--clr-accent-foreground: 0 0% 98%;
+
+		--clr-destructive: 0 62.8% 30.6%;
+		--clr-destructive-foreground: 0 0% 98%;
+
+		--clr-ring: 240 4.9% 83.9%;
+	}
+}

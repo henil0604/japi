@@ -1,7 +1,12 @@
 <script>
-	import '../app.css';
+	import DefaultLayout from '$layouts/default.svelte';
+	import '$lib/styles/global.css';
+
+	const { children } = $props();
 </script>
 
-<slot></slot>
+<DefaultLayout>
+	{@render children()}
+</DefaultLayout>
 
 <style></style>
