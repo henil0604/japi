@@ -50,9 +50,9 @@ const config: Config = {
 				}
 			},
 			borderRadius: {
-				lg: 'var(--size-radius)',
-				md: 'calc(var(--size-radius) - 2px)',
-				sm: 'calc(var(--size-radius) - 4px)'
+				lg: 'var(--br-radius)',
+				md: 'calc(var(--br-radius) - 2px)',
+				sm: 'calc(var(--br-radius) - 4px)'
 			},
 			fontFamily: {
 				sans: [...fontFamily.sans]
