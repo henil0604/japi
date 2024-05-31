@@ -5,6 +5,8 @@
 	const { children } = $props();
 </script>
 
-<DefaultLayout {children} />
+<DefaultLayout>
+	{@render children()}
+</DefaultLayout>
 
 <style></style>
