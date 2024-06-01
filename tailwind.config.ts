@@ -59,7 +59,7 @@ const config: Config = {
 				sm: 'calc(var(--br-radius) - 4px)'
 			},
 			fontFamily: {
-				sans: [...fontFamily.sans]
+				sans: ['Inter', ...fontFamily.sans]
 			}
 		}
 	}
