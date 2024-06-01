@@ -1,28 +1,16 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import type { AuthProvider } from '$lib/types/auth';
 	import { ICONS } from '$lib/const/ui';
-	import { useAuth } from '$lib/use/auth';
-	import Icon from '@iconify/svelte';
+	import AuthButton from '$lib/components/AuthButton.svelte';
 </script>
-
-{#snippet AuthButton(icon: string, provider: AuthProvider)}
-	<Button href={useAuth.getAuthorizationURL(provider).href} class="gap-2" size="lg">
-		<Icon font-size={23} {icon} />
-		<span>
-			Continue with <span class="capitalize">{provider}</span>
-		</span>
-	</Button>
-{/snippet}
 
 <div class="wrapper">
 	<div class="list">
-		{@render AuthButton(ICONS.BRAND.GOOGLE, 'google')}
-		{@render AuthButton(ICONS.BRAND.GITHUB, 'github')}
+		<AuthButton icon={ICONS.BRAND.GOOGLE} provider="google" />
+		<AuthButton icon={ICONS.BRAND.GITHUB} provider="github" />
 	</div>
 </div>
 
-<style>
+<style lang="css">
 	.wrapper {
 		width: 100%;
 		min-height: 100%;
@@ -32,7 +20,7 @@
 		align-items: center;
 		flex-direction: column;
 
-		.list {
+		& .list {
 			@apply border;
 
 			display: flex;
