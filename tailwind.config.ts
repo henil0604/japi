@@ -32,6 +32,10 @@ const config: Config = {
 					DEFAULT: 'hsl(var(--clr-destructive) / <alpha-value>)',
 					foreground: 'hsl(var(--clr-destructive-foreground) / <alpha-value>)'
 				},
+				brand: {
+					DEFAULT: 'hsl(var(--clr-brand) / <alpha-value>)',
+					foreground: 'hsl(var(--clr-brand-foreground) / <alpha-value>)'
+				},
 				muted: {
 					DEFAULT: 'hsl(var(--clr-muted) / <alpha-value>)',
 					foreground: 'hsl(var(--clr-muted-foreground) / <alpha-value>)'
