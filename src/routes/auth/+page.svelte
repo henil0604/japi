@@ -10,7 +10,7 @@
 	</div>
 </div>
 
-<style lang="css">
+<style>
 	.wrapper {
 		width: 100%;
 		min-height: 100%;
