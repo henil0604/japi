@@ -1,8 +1,14 @@
 <script lang="ts">
+	import { isTabletViewport } from '$stores/utils';
+	import UnsupportedScreen from '$components/UnsupportedScreen.svelte';
 </script>
 
 <div>
-	<slot />
+	{#if $isTabletViewport}
+		<UnsupportedScreen />
+	{:else}
+		<slot />
+	{/if}
 </div>
 
 <style scoped>
