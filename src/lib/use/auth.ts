@@ -6,8 +6,11 @@ import type { AuthProvider } from '$lib/types/auth';
 interface AuthorizationURLOptions {
 	redirectTo?: string;
 }
-export function getAuthorizationURL(provider: AuthProvider, options?: AuthorizationURLOptions) {
-	const url = AUTH_PROVIDER_ROUTES[provider];
+export function getAuthorizationURL(
+	provider?: AuthProvider | null,
+	options?: AuthorizationURLOptions
+) {
+	const url = provider ? AUTH_PROVIDER_ROUTES[provider] : ROUTES.AUTH_BASE.url;
 
 	if (options?.redirectTo) {
 		url.searchParams.set(NEXT_REDIRECT_SEARCH_PARAMETER_NAME, options.redirectTo);

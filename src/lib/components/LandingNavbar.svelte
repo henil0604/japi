@@ -3,6 +3,7 @@
 	import { ROUTES } from '$lib/const/routes';
 	import { GITHUB_REPO_URL } from '$lib/const/social';
 	import { ICONS } from '$lib/const/ui';
+	import { useAuth } from '$lib/use/auth';
 	import Icon from '@iconify/svelte';
 
 	interface Link {
@@ -29,8 +30,11 @@
 			<a target="_blank" title="Open Github repo" href={GITHUB_REPO_URL}>
 				<Icon font-size={30} icon={ICONS.BRAND.GITHUB} />
 			</a>
-			<Button href={ROUTES.AUTH_BASE.url.href} variant="brand-outline" size="sm"
-				>Sign In</Button
+			<Button
+				href={useAuth.getAuthorizationURL(null, { redirectTo: ROUTES.LANDING.pathname })
+					.href}
+				variant="brand-outline"
+				size="sm">Sign In</Button
 			>
 		</div>
 	</div>

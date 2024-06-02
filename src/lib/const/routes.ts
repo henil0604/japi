@@ -8,6 +8,7 @@ const ORIGIN = browser
 		: PUBLIC_ORIGIN;
 
 const RAW_ROUTES = {
+	LANDING: '/',
 	AUTH_BASE: '/auth',
 	AUTH_GITHUB: '/auth/github',
 	AUTH_GITHUB_CALLBACK: '/auth/github/callback',
