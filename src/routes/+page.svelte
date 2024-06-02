@@ -51,7 +51,11 @@
 
 		<div class="my-5"></div>
 		<div class="hero-action">
-			<Button size="lg">Create a bin</Button>
+			<Button size="lg">Try out!</Button>
+			<Button size="lg" variant="brand" class="gap-2">
+				<span>Get Started</span>
+				<Icon icon={ICONS.ARROW_RIGHT} />
+			</Button>
 		</div>
 	</div>
 
