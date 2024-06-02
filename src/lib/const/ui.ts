@@ -6,5 +6,7 @@ export const ICONS = {
 	LIGHTNING_FILLED: 'ph:lightning-fill',
 	TIMER_FILLED: 'basil:timer-solid',
 	SERVER_FILLED: 'mdi:server',
-	ARROW_RIGHT: 'formkit:arrowright'
+	ARROW_RIGHT: 'formkit:arrowright',
+	CHECK: 'mdi:check',
+	CHECK_CIRCLE: 'lets-icons:check-fill'
 };
