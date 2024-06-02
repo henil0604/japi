@@ -144,7 +144,7 @@
 					bind:this={tryoutEditorRef}
 					indentation={4}
 					bind:content={$tryoutEditorContent}
-					mode={Mode.text}
+					mode={Mode.tree}
 				/>
 				<div class="action-footer">
 					<div class="action-info">
