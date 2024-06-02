@@ -8,7 +8,7 @@
 			icon: ICONS.LIGHTNING_FILLED,
 			title: 'Lightning Fast',
 			description:
-				'The service is utilizes the power of in-memory storage to store and retrieve data in seconds. This leads to a lightning fast response time.'
+				'The service is utilizes the power of in-memory storage to store and retrieve data in milliseconds. This leads to a lightning fast response time.'
 		},
 		{
 			icon: ICONS.TIMER_FILLED,
@@ -113,6 +113,7 @@
 
 		& .hero-action {
 			display: flex;
+			gap: theme('gap.4');
 		}
 	}
 
