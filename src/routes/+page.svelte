@@ -1,4 +1,5 @@
 <script lang="ts">
+	import LandingNavbar from '$lib/components/LandingNavbar.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { ICONS } from '$lib/const/ui';
 	import Icon from '@iconify/svelte';
@@ -31,6 +32,8 @@
 </script>
 
 <main>
+	<LandingNavbar />
+
 	<!-- Hero Section -->
 	<div class="hero-section">
 		<h1 class="hero-title">Store JSON with Ease</h1>
