@@ -179,10 +179,10 @@
 			</div>
 			<div class="info-wrapper">
 				<div class="heading">Effortless Web Editing Experience</div>
-				<div class="features">
+				<div class="editor-features">
 					{#each webEditorFeatures as feature}
 						<div class="feature-item">
-							<div class="icon">
+							<div class="icon-wrapper">
 								<Icon font-size={30} icon={ICONS.CHECK_CIRCLE} />
 							</div>
 							<div class="text">
@@ -383,7 +383,7 @@
 					font-weight: theme('fontWeight.bold');
 				}
 
-				& .features {
+				& .editor-features {
 					display: grid;
 					grid-template-columns: repeat(2, 1fr);
 					gap: theme('gap.4');
@@ -393,7 +393,7 @@
 						align-items: center;
 						gap: theme('gap.2');
 
-						& .icon {
+						& .icon-wrapper {
 							color: theme('colors.brand.DEFAULT');
 						}
 
