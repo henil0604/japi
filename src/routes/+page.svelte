@@ -187,6 +187,12 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="footer">
+		<div class="copyright-notice">
+			Copyright &copy; JAPI | {new Date().getFullYear()}
+		</div>
+	</div>
 </main>
 
 <style scoped>
@@ -294,6 +300,7 @@
 		flex-direction: column;
 		align-items: center;
 		padding: var(--section-y-padding) var(--section-x-padding);
+		padding-bottom: theme('padding.48');
 
 		& .heading {
 			font-size: theme('fontSize.4xl');
@@ -393,6 +400,28 @@
 					}
 				}
 			}
+		}
+	}
+
+	main .footer {
+		--section-x-padding: clamp(theme('padding.20'), theme('padding.20'), theme('padding.40'));
+		--section-y-padding: clamp(theme('padding.10'), theme('padding.16'), theme('padding.40'));
+
+		background-color: theme('backgroundColor.accent.DEFAULT');
+		color: theme('colors.accent.foreground');
+
+		width: 100%;
+		height: 100%;
+
+		padding: var(--section-y-padding) var(--section-x-padding);
+
+		display: flex;
+		flex-direction: column;
+		gap: theme('gap.8');
+
+		& .copyright-notice {
+			text-align: center;
+			font-weight: theme('fontWeight.semibold');
 		}
 	}
 </style>
