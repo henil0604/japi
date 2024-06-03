@@ -108,7 +108,14 @@
 
 		<div class="my-5"></div>
 		<div class="hero-action">
-			<Button size="lg">Try out!</Button>
+			<Button
+				size="lg"
+				on:click={() =>
+					scrollTo({
+						behavior: 'smooth',
+						top: document.getElementById('try')?.offsetTop
+					})}>Try out!</Button
+			>
 			<Button size="lg" variant="brand" class="gap-2">
 				<span>Get Started</span>
 				<Icon icon={ICONS.ARROW_RIGHT} />
@@ -134,7 +141,7 @@
 		</div>
 	</div>
 
-	<div class="tryout-section">
+	<div id="try" class="tryout-section">
 		<h1 class="heading">Try it out!</h1>
 
 		<div class="my-8" />
