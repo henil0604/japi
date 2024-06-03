@@ -385,12 +385,8 @@
 
 				& .features {
 					display: grid;
-					grid-template-columns: repeat(1, 1fr);
+					grid-template-columns: repeat(2, 1fr);
 					gap: theme('gap.4');
-
-					@media screen and (width <= 1200px) {
-						grid-template-columns: repeat(2, 1fr);
-					}
 
 					& .feature-item {
 						display: flex;
