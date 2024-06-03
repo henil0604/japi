@@ -11,6 +11,7 @@
 		href: string;
 	}
 
+	// links will be added in future, as of now this remains empty
 	let links: Link[] = [];
 </script>
 
