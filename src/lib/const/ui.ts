@@ -8,5 +8,6 @@ export const ICONS = {
 	SERVER_FILLED: 'mdi:server',
 	ARROW_RIGHT: 'formkit:arrowright',
 	CHECK: 'mdi:check',
-	CHECK_CIRCLE: 'lets-icons:check-fill'
+	CHECK_CIRCLE: 'lets-icons:check-fill',
+	MOUSE: 'bi:mouse'
 };

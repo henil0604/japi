@@ -123,6 +123,12 @@
 		</div>
 	</div>
 
+	<div class="scroll-down-wrapper">
+		<div title="Scroll down">
+			<Icon icon={ICONS.MOUSE} font-size={30} class="animate-[bounce_3s_infinite]" />
+		</div>
+	</div>
+
 	<!--  features section -->
 	<div class="features-section">
 		<h1 class="heading">Why?</h1>
@@ -209,7 +215,12 @@
 	}
 
 	main .hero-section {
-		--section-y-padding: clamp(theme('padding.40'), theme('padding.56'), theme('padding.64'));
+		--section-top-padding: clamp(theme('padding.24'), theme('padding.32'), theme('padding.64'));
+		--section-bottom-padding: clamp(
+			theme('padding.28'),
+			theme('padding.44'),
+			theme('padding.64')
+		);
 
 		width: 100%;
 		height: fit-content;
@@ -217,7 +228,9 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: var(--section-y-padding) 0;
+		padding: 0;
+		padding-top: var(--section-top-padding);
+		padding-bottom: var(--section-bottom-padding);
 
 		& .hero-title {
 			font-size: theme('fontSize.6xl');
@@ -239,6 +252,17 @@
 			display: flex;
 			gap: theme('gap.4');
 		}
+	}
+
+	main .scroll-down-wrapper {
+		--section-y-padding: clamp(theme('padding.4'), theme('padding.8'), theme('padding.8'));
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+
+		padding: var(--section-y-padding);
 	}
 
 	main .features-section {
