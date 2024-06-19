@@ -85,6 +85,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>JAPI - Easy JSON Bins</title>
+</svelte:head>
+
 <main>
 	<LandingNavbar />
 
