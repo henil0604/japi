@@ -31,12 +31,17 @@
 			<a target="_blank" title="Open Github repo" href={GITHUB_REPO_URL}>
 				<Icon font-size={30} icon={ICONS.BRAND.GITHUB} />
 			</a>
-			<Button
-				href={useAuth.getAuthorizationURL(null, { redirectTo: ROUTES.LANDING.pathname })
-					.href}
-				variant="brand-outline"
-				size="sm">Sign In</Button
-			>
+			{#if useAuth.isAuthenticated()}
+				<Button href={ROUTES.DASHBOARD.pathname} variant="brand" size="sm">Dashboard</Button
+				>
+			{:else}
+				<Button
+					href={useAuth.getAuthorizationURL(null, { redirectTo: ROUTES.LANDING.pathname })
+						.href}
+					variant="brand-outline"
+					size="sm">Sign In</Button
+				>
+			{/if}
 		</div>
 	</div>
 </div>
