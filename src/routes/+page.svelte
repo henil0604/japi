@@ -359,6 +359,8 @@
 	main .tryout-section {
 		--section-x-padding: clamp(theme('padding.20'), theme('padding.20'), theme('padding.40'));
 		--section-y-padding: clamp(theme('padding.10'), theme('padding.16'), theme('padding.40'));
+		--editor-wrapper-x-padding: 0;
+		--info-wrapper-x-padding: 0;
 
 		width: 100%;
 		height: fit-content;
