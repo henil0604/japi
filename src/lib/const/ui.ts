@@ -12,7 +12,8 @@ export const ICONS = {
 	ARROW_RIGHT: 'formkit:arrowright',
 	CHECK: 'mdi:check',
 	CHECK_CIRCLE: 'lets-icons:check-fill',
-	MOUSE: 'bi:mouse'
+	MOUSE: 'bi:mouse',
+	TERM_REFERENCE: 'carbon:term-reference'
 };
 
 export const SUPPORTED_TABLET_ROUTES = [ROUTES.LANDING.pathname, ROUTES.AUTH_BASE.pathname];

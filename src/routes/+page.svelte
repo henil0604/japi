@@ -14,9 +14,10 @@
 				'The service is utilizes the power of in-memory storage to store and retrieve data in milliseconds. This leads to a lightning fast response time.'
 		},
 		{
-			icon: ICONS.TIMER_FILLED,
-			title: 'Super quick',
-			description: 'It hardly takes a minute to create a new bin. Even less to secure it!'
+			icon: ICONS.TERM_REFERENCE,
+			title: 'Reference Bins',
+			description:
+				'Utilize other bins as key values, enabling efficient data referencing and organization within your JSON storage.'
 		},
 		{
 			icon: ICONS.SERVER_FILLED,
