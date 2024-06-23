@@ -494,7 +494,7 @@
 
 	main .footer {
 		--section-x-padding: clamp(theme('padding.20'), theme('padding.20'), theme('padding.40'));
-		--section-y-padding: clamp(theme('padding.10'), theme('padding.16'), theme('padding.40'));
+		--section-y-padding: clamp(theme('padding.2'), theme('padding.4'), theme('padding.6'));
 
 		background-color: theme('backgroundColor.accent.DEFAULT');
 		color: theme('colors.accent.foreground');
