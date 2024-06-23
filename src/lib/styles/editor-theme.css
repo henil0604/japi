@@ -1,0 +1,4 @@
+.jse-main {
+	--jse-theme-color: theme('colors.brand.DEFAULT');
+	--jse-font-size-mono: theme('fontSize.lg');
+}
